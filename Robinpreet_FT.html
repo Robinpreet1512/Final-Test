@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final test lab</title>
+</head>
+<body>
+    <font size="8" color="green">Final test lab</font><br><br>
+    Number of rows: <input type="text" id="t1" /><br><br>
+    Number of cols: <input type="text" id="t2" /><br><br>
+    
+    <button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+    
+    <button id="b2" onclick="addColumn()">Add Column</button>
+    
+    <button id="b3" onclick="addRow()">Add Row</button>
+    
+    <div id="tableContainer"></div> <!-- Container for the generated table -->
+    
+    <script>
+        // Function to generate the table
+        function generateTable() {
+            // Get the number of rows and columns entered by the user
+            var numRows = parseInt(document.getElementById('t1').value);
+            var numCols = parseInt(document.getElementById('t2').value);
+
+            // Create the HTML for the table
+            var tableHTML = '<table border="1">';
+            for (var i = 0; i < numRows; i++) {
+                tableHTML += '<tr>';
+                for (var j = 0; j < numCols; j++) {
+                    tableHTML += '<td>(' + i + ',' + j + ')</td>';
+                }
+                tableHTML += '</tr>';
+            }
+            tableHTML += '</table>';
+
+            // Insert the table HTML into the table container
+            document.getElementById('tableContainer').innerHTML = tableHTML;
+        }
+
+        // Function to add a new column to the table
+        function addColumn() {
+            var table = document.getElementById('tableContainer').getElementsByTagName('table')[0];
+            var numRows = table.rows.length;
+
+            // Loop through each row and insert a new cell at the end of each row
+            for (var i = 0; i < numRows; i++) {
+                var newRow = table.rows[i];
+                var newCell = newRow.insertCell(-1);
+                newCell.innerHTML = '(' + i + ',' + (newRow.cells.length - 1) + ')';
+            }
+        }
+
+        // Function to add a new row to the table
+        function addRow() {
+            var table = document.getElementById('tableContainer').getElementsByTagName('table')[0];
+            var numCols = table.rows[0].cells.length;
+
+            // Create a new row element
+            var newRow = table.insertRow(-1);
+
+            // Loop through each column and insert a new cell at the end of the new row
+            for (var j = 0; j < numCols; j++) {
+                var newCell = newRow.insertCell(-1);
+                newCell.innerHTML = '(' + (table.rows.length - 1) + ',' + j + ')';
+            }
+        }
+    </script>
+</body>
+</html>
