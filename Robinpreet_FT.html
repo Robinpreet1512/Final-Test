@@ -37,20 +37,7 @@
             // Insert the table HTML into the table container
             document.getElementById('tableContainer').innerHTML = tableHTML;
         }
-
-        // Adding new colunm:
-        function addColumn() {
-            var table = document.getElementById('tableContainer').getElementsByTagName('table')[0];
-            var numRows = table.rows.length;
-
-            // Loop through each row and insert a new cell at the end of each row
-            for (var i = 0; i < numRows; i++) {
-                var newRow = table.rows[i];
-                var newCell = newRow.insertCell(-1);
-                newCell.innerHTML = '(' + i + ',' + (newRow.cells.length - 1) + ')';
-            }
-        }
-
+        
         // Function to add a new row to the table
         function addRow() {
             var table = document.getElementById('tableContainer').getElementsByTagName('table')[0];
@@ -63,6 +50,19 @@
             for (var j = 0; j < numCols; j++) {
                 var newCell = newRow.insertCell(-1);
                 newCell.innerHTML = '(' + (table.rows.length - 1) + ',' + j + ')';
+            }
+        }
+
+         // Adding new colunm:
+        function addColumn() {
+            var table = document.getElementById('tableContainer').getElementsByTagName('table')[0];
+            var numRows = table.rows.length;
+
+            // Loop through each row and insert a new cell at the end of each row
+            for (var i = 0; i < numRows; i++) {
+                var newRow = table.rows[i];
+                var newCell = newRow.insertCell(-1);
+                newCell.innerHTML = '(' + i + ',' + (newRow.cells.length - 1) + ')';
             }
         }
     </script>
